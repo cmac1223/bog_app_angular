@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app='BogApp'>
   <head>
     <title>BogAppAngTwo</title>
     <%= csrf_meta_tags %>
@@ -9,6 +9,8 @@
   </head>
 
   <body>
+  {{2 + 2}}
+    <ui-view></ui-view>
     <%= yield %>
   </body>
 </html>
