@@ -7,8 +7,9 @@ function CreatureController($stateParams, creaturesService) {
 
   function activate () {
     creaturesService.getCreature($stateParams.id).then(response => {
-      vm.creature = response.creature;
-    })
+      vm.creature = response
+      console.log(response);
+    });
   }
 }
 

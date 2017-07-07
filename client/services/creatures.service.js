@@ -11,6 +11,12 @@ function creaturesService($http){
     return $http.get(`/creatures/${id}`).then(response => response.data);
   }
 
+  service.saveCreature = function (newCreature){
+    return $http.post("/creatures", newCreature).then(response => {
+      return response.data;
+    })
+  }
+
   return service;
 }
 

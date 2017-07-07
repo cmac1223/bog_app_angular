@@ -8827,7 +8827,8 @@ function CreatureController($stateParams, creaturesService) {
 
   function activate() {
     creaturesService.getCreature($stateParams.id).then(function (response) {
-      vm.creature = response.creature;
+      vm.creature = response;
+      console.log(response);
     });
   }
 }
@@ -8867,6 +8868,9 @@ function router($stateProvider, $urlRouterProvider) {
   }).state("creature", {
     url: "/creature/:id",
     template: "<bog-creature></bog-creature>"
+  }).state("newCreature", {
+    url: "/creature/new",
+    template: "<bog-new-creature></bog-new-creature>"
   });
 
   $urlRouterProvider.otherwise("/");
@@ -45033,7 +45037,7 @@ angular.module('BogApp').component("bogCreature", creatureComponent);
 /* 95 */
 /***/ (function(module, exports) {
 
-module.exports = "<a ui-sref=\"home\"> Go Back </a>\n\n<h1>{{$ctrl.creature.name}}</h1>\n<h3>{{$ctrl.creature.description}}</h3>\n\n";
+module.exports = "<a ui-sref=\"home\"> Go Back </a>\n\n<h1>{{$ctrl.creature.name}}</h1>\n<h3>{{$ctrl.creature.description}}</h3>\n\n\n\n";
 
 /***/ }),
 /* 96 */
@@ -45055,6 +45059,12 @@ function creaturesService($http) {
 
   service.getCreature = function (id) {
     return $http.get("/creatures/" + id).then(function (response) {
+      return response.data;
+    });
+  };
+
+  service.saveCreature = function (newCreature) {
+    return $http.post("/creatures", newCreature).then(function (response) {
       return response.data;
     });
   };

@@ -11,11 +11,14 @@ function router ($stateProvider, $urlRouterProvider){
     url: "/",
     template: "<bog-creatures></bog-creatures>"
   })
-
   .state("creature", {
     url: "/creature/:id",
     template: "<bog-creature></bog-creature>"
   })
+  .state("newCreature", {
+    url: "/creature/new",
+    template: "<bog-new-creature></bog-new-creature>"
+  });
 
   $urlRouterProvider.otherwise("/");
 }
